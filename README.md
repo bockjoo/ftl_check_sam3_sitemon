@@ -13,6 +13,8 @@ notifytowhom is the crypted email address (Check the pattern)
 
 token.txt is empty in this repo. 
 
+Without the token inside token.txt, the script will fail.
+
 You need to obtain a token to do search https://monit-grafana.cern.ch/api/datasources/proxy/${DBID}/_msearch
 
 
