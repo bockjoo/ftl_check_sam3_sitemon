@@ -1,0 +1,28 @@
+universe = grid
+
+grid_resource = condor cslrm.rc.ufl.edu cslrm.rc.ufl.edu:9619
+
+executable = /osg/home/cmspilot/JobSubmit/samjob/nagrun.sh
+
+arguments = "-v cms -f /cms/Role=lcgadmin -d /queue/grid.probe.metricOutput.EGEE.etf-cms-prod_cern_ch -b stomp://oldsam.msg.cern.ch:6163/ -c htcondor://cslrm.rc.ufl.edu -t 600 -w 1 -e NONE"
+
+output = /osg/home/cmspilot/JobSubmit/samjob/gridjob.out
+
+error = /osg/home/cmspilot/JobSubmit/samjob/gridjob.err
+
+log = /osg/home/cmspilot/JobSubmit/samjob/gridjob.log
+
+TransferInputFiles = /osg/home/cmspilot/JobSubmit/samjob/wnlogs.tgz,/osg/home/cmspilot/JobSubmit/samjob/gridjob.tgz
+
+TransferOutputFiles = wnlogs.tgz
+
+TransferOutputRemaps = "wnlogs.tgz=/osg/home/cmspilot/JobSubmit/wnlogs.tgz"
+
+ShouldTransferFiles = YES
+
+WhenToTransferOutput = ON_EXIT
+
+use_x509userproxy = true
+
+queue
+

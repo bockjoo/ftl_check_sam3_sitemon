@@ -1,0 +1,3 @@
+{"search_type": "query_then_fetch", "index": ["monit_prod_sam3_enr_metric*"], "ignore_unavailable": true}
+{"query": {"bool": {"filter": [{"range": {"metadata.timestamp": {"gte": "now-4h/h", "lte": "now", "format": "epoch_millis"}}}, {"query_string": {"analyze_wildcard": true, "query": "data.dst_experiment_site:@@thesite@@"}}]}}, "from": 0, "size": @@size@@, "sort": [{"@@unique_f@@": "desc"},{"@@tie_breakter_id@@": "asc"}]}
+
