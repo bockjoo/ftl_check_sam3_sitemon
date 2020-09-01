@@ -483,10 +483,11 @@ sed -e "s#@@thesite@@#$thesite#" -e "s#@@profile@@#$theprofile#" -e "s#@@size@@#
 
 nsearch=$(expr $nhits / $size)
 
-echo "<pre>"
-echo INFO Site=$thesite nhits=$nhits query json follows
-cat ${sort_search_json}_${now_is}
-echo "</pre>"
+#echo "<pre>"
+#echo INFO Site=$thesite nhits=$nhits query json follows
+#cat ${sort_search_json}_${now_is}
+#echo "</pre>"
+echo "<center><FONT size=7 color='green'> <b> Site:$thesite SAM Test Status </b> </FONT></center>"
 
 for i in $(seq 0 $nsearch) ; do
    if [ $i -eq 0 ] ; then
