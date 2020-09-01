@@ -32,3 +32,11 @@ cp ftl_check_sam3_sitemon.sh to the web server /cgi-bin/
 
 Point the browser to http://${web_server_hostname}:${port}/cgi-bin/ftl_check_sam3_sitemon.sh to see the old style SAM test dashboard emulation
 
+In the browser display, there are mainly 3 types of clickables:
+
+1 Sitename: When the sitename is clicked, it shows the SAM test history in the Grafana dashboard for the site and when the dashboard is further clicked, one can see the 15 min test history. From there, one can control the duration of the history time line and so forth
+
+2 Hostname: When the host name is clicked, it shows the SAM test history in the Grafana dashboard for each host
+
+3 LEGEND Number : When the clickable legend number is clicked, one can see how to emulate each SAM test.
+
