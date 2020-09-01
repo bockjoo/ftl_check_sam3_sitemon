@@ -17,6 +17,7 @@ Without the token inside token.txt, the script will fail.
 
 You need to obtain a token to do search https://monit-grafana.cern.ch/api/datasources/proxy/${DBID}/_msearch
 
+from the CMS Monitoring team, Chritian or somebody.
 
 [2] How to cronize?
 
