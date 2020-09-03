@@ -609,7 +609,7 @@ for sf in $(printf "$output\n" | grep "\"service_flavour\"" | sort -u | cut -d\"
              L=$(echo $(printf "$LEGEND\n" | grep $m_name | cut -d: -f1))
              if [ "x$status" != "xOK" ] ; then
                 #error_message="$error_message\n[$sf][$h][$t] = $status ${detail_link_prefix}${id}\n"
-                error_message="$error_message\n[$sf][$h][$t] = $status ${webroot}/$(basename$0)?test_id=$id&site=$thesite\n"
+                error_message="$error_message\n[$sf][$h][$t] = $status ${webroot}/$(basename $0)?test_id=$id&site=$thesite\n"
              fi
              #if [ "x$L" != "x" ] ; then
              if [ "x$status" == "x" ] ; then
