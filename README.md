@@ -9,7 +9,13 @@ In the script, ftl_check_sam3_sitemon.sh, change:
 
 2 notifytowhom
 
-notifytowhom is the crypted email address (Check the pattern)
+3 tld
+
+4 port
+
+notifytowhom is the crypted email address (Check the pattern).
+
+tld and port are for the web server cgi script.
 
 token.txt is empty in this repo. 
 
