@@ -244,7 +244,8 @@ for sf in $(printf "$output\n" | grep "\"service_flavour\"" | sort -u | cut -d\"
              status=$(printf "$output\n" | grep -A 2 -B 3 $sf | grep -A 4 -B 1 $h | grep -m 1 -A 5 $t | grep "\"status\"" | cut -d\" -f4)
              id=$(echo $(printf "$output\n" | grep -A 2 -B 3 $sf | grep -A 4 -B 1 $h | grep -m 1 -B 5 $t | grep "\"_id\"" | cut -d\" -f4))
              timestamp=$(echo $(printf "$output\n" | grep -A 2 -B 3 $sf | grep -A 4 -B 1 $h | grep -B 5 -A 5 $t | grep "\"timestamp\"" | cut -d\" -f3 | cut -d: -f2 | cut -d, -f1 | head -1)) # | cut -d: -f2 | cut -d, -f1 | head -1)) # | grep -m 1 -B 5 -A 5 $t | cut -d\" -f4))
-             YmdHM=$(date -d@$(expr $timestamp / 1000) +%Y%m%d_%H:%M) 
+             #YmdHM=$(date -d@$(expr $timestamp / 1000) +%Y%m%d_%H:%M) 
+             YmdHM=$(date -d@$(expr $timestamp / 1000) +%m%d%H%M) 
              
              bgcolor=red
              [ "x$status" == "xOK" ] && bgcolor="#90EE90" # green
