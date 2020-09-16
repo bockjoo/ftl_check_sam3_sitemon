@@ -3,7 +3,7 @@ Minimally large effort Emulation of CMS SAM Dashboard in plain cgi/HTML or for f
 
 [1] How to configure the script?
 
-In the script, ftl_check_sam3_sitemon.sh, change:
+In the script, ftl_check_sam3_sitemon.sh and cms_sam3_sitemon_dashboard_cron_email.sh, change:
 
 1 inputs
 
