@@ -246,7 +246,7 @@ for sf in $(printf "$output\n" | grep "\"service_flavour\"" | sort -u | cut -d\"
              YmdHM=$(date -d@$(expr $timestamp / 1000) +%Y%m%d_%H:%M) 
              
              bgcolor=red
-             [ "x$status" == "xOK" ] && bgcolor=green
+             [ "x$status" == "xOK" ] && bgcolor="#90EE90" # green
              [ "x$status" == "xCRITICAL" ] && bgcolor=red
              [ "x$status" == "xWARNING" ] && bgcolor=orange
              [ "x$status" == "xUNKNOWN" ] && bgcolor=grey
@@ -262,7 +262,8 @@ for sf in $(printf "$output\n" | grep "\"service_flavour\"" | sort -u | cut -d\"
                 detail_link="https://monit-grafana.cern.ch/d/siYq3DxZz/wlcg-sitemon-test-details?orgId=20&var-metric=${metric_name}&var-dst_hostname=${h}&var-timestamp=${thetimestamp}"
                 detail_link=$(echo ${detail_link} | sed "s#__slash__#/#g" | sed "s#__equals__#=#g") # / is %2F = is %3D 
                 #echo "<td bgcolor='$bgcolor'><a href='?test_id=$id&site=$thesite' target=_blank> $status </a><br/><FONT color='yellow'> T:$YmdHM <!-- $L --> </FONT> </td>"
-                echo "<td bgcolor='$bgcolor'><a href='${detail_link}' target=_blank> $status </a><a href='?test_id=$id&site=$thesite' target=_blank> $status </a><br/><FONT color='yellow'> T:$YmdHM <!-- $L --> </FONT> </td>" >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
+                #echo "<td bgcolor='$bgcolor'><a href='${detail_link}' target=_blank> $status </a><a href='?test_id=$id&site=$thesite' target=_blank> $status </a><br/><FONT color='yellow'> T:$YmdHM <!-- $L --> </FONT> </td>" >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
+                echo "<td bgcolor='$bgcolor'><a href='${detail_link}' target=_blank> $status </a><br/><FONT color='yellow'> T:$YmdHM <!-- $L --> </FONT> </td>" >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
              fi
              if [ "x$status" != "xOK" ] ; then
                 #error_message="$error_message\n[$sf][$h][$t] = $status ${detail_link_prefix}${id}\n"
