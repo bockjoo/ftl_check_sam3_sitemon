@@ -21,6 +21,7 @@ theprofile=CMS_CRITICAL_FULL
 #theprofile=CMS_CRITICAL
 #theprofile=CMS_FULL
 DBID=9673
+EVERY_X_HOUR=2
 #unique_f=data.metric_name # data.CRAB_JobLogURL
 ##tie_breaker_id=metadata.kafka_timestamp # data.CRAB_TaskCreationDate
 #tie_breaker_id=metadata.timestamp # data.CRAB_TaskCreationDate
@@ -297,18 +298,18 @@ if [ "x$error_message" != "x" ] ; then
    cat $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
    echo
 ) | /usr/sbin/sendmail -t
-#else
-
-#(
-#   echo "To: "$(echo $notifytowhom | sed "s#__AT__#@#" | sed "s#__dot__#\.#g")
-#   echo "Subject: OK SAM3 Tests"
-#   echo "Content-Type: text/html"
-#   echo 
+else
+if [ $(expr $(date +%H) % $EVERY_X_HOUR) -eq 0 ] ; then
+(
+   echo "To: "$(echo $notifytowhom | sed "s#__AT__#@#" | sed "s#__dot__#\.#g")
+   echo "Subject: OK SAM3 Tests"
+   echo "Content-Type: text/html"
+   echo 
    
-#   cat $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
-#   echo
-#) | /usr/sbin/sendmail -t
-
+   cat $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
+   echo
+) | /usr/sbin/sendmail -t
+fi
 fi
 rm -f $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
 rm -f ${sitemon_agg_metric_json}_${now_is}
