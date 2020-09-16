@@ -46,3 +46,10 @@ In the browser display, there are mainly 3 types of clickables:
 
 3 LEGEND Number : When the clickable legend number is clicked, one can see how to emulate each SAM test.
 
+[4] How to send the dashboard to your browser-capable email client, e.g., Thunderbird
+
+cronize cms_sam3_sitemon_dashboard_cron_email.sh like so:
+
+15 * * * * /opt/cms/services/cms_sam3_sitemon_dashboard_cron_email.sh T2_US_MIT > /opt/cms/services/cms_sam3_sitemon_dashboard_cron_email.log 2>&1
+
+It will deliver the dashboard to your Thunderbird inbox with all clickables mentioned in section [3].
