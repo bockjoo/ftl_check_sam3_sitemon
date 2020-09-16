@@ -2,6 +2,8 @@
 
 Minimally large effort Emulation of CMS SAM Dashboard in plain cgi/HTML or for failed test alert
 
+The following dashboard can be viewed via a web server or an email agent, e.g., Thunderbird (See section [4]).
+
 ![SAM Dashboard Clickables](SAMDashboardClickables.png)
 
 [1] How to configure the script?
