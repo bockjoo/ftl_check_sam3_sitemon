@@ -186,6 +186,7 @@ old_sf=
 profile_history_site_link="https://monit-grafana.cern.ch/d/000000619/wlcg-sitemon-historical-profiles?orgId=20&var-vo=cms&var-dst_country=All&var-dst_federation=All&var-dst_tier=2&var-dst_experiment_site=${thesite}&var-service_flavour=All&var-profile=CMS_CRITICAL_FULL&var-dst_hostname=All&var-es_dst_hostname=All&var-recomputation=status"
 error_message=""
 error_message_html=""
+extra_metric_names=""
 for sf in $(printf "$output\n" | grep "\"service_flavour\"" | sort -u | cut -d\" -f4) ; do
        i=$(expr $i + 1)
        j=0
@@ -193,6 +194,13 @@ for sf in $(printf "$output\n" | grep "\"service_flavour\"" | sort -u | cut -d\"
        maxt=0 ; maxh=
        for h in $(printf "$output\n" | grep -A 2 -B 3 $sf | grep "\"dst_hostname\"" | sort -u | cut -d\" -f4) ; do
            nt=$(printf "$output\n" | grep -A 2 -B 3 $sf | grep -A 4 -B 1 $h | grep "\"metric_name\"" | cut -d\" -f4 | sort -u | wc -l)
+           for t in $(printf "$output\n" | grep -A 2 -B 3 $sf | grep -A 4 -B 1 $h | grep "\"metric_name\"" | cut -d\" -f4 | sort -u) ; do
+                 m_name=$(echo $t  | sed 's#-/# #g' | awk '{print $1}')
+                 L=$(echo $(printf "$LEGEND\n" | grep $m_name | cut -d: -f1))
+                 if [ "x$L" == "x" ] ; then
+                    echo "$extra_metric_names" | grep -q $t || extra_metric_names="$extra_metric_names <br/> $t"
+                 fi
+           done
            [ $nt -gt $maxt ] && { maxt=$nt ; maxh=$h ; } ;
        done
        lstring=
@@ -281,6 +289,9 @@ for l in $LEGEND ; do
 done
 echo "</table>" >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
 echo "Test numbers &gt; 17 are non-critical CMS tests"
+echo "<br/>"
+echo "<FONT size=3 color='green'> Extra Metric Names </FONT></br>"
+echo "<FONT color='red'> $extra_metric_names </FONT>"
 echo "</html>" >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
 
 #echo error_message=$error_message
