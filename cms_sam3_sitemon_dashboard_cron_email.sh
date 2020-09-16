@@ -299,7 +299,7 @@ if [ "x$error_message" != "x" ] ; then
    echo
 ) | /usr/sbin/sendmail -t
 else
-if [ $(expr $(date +%H) % $EVERY_X_HOUR) -eq 0 ] ; then
+if [ $(expr $(date +%H) % $EVERY_X_HOUR) -eq 0 -a $(date +%M) -lt 15 ] ; then
 (
    echo "To: "$(echo $notifytowhom | sed "s#__AT__#@#" | sed "s#__dot__#\.#g")
    echo "Subject: OK SAM3 Tests"
