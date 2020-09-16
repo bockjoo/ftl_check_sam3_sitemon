@@ -297,17 +297,17 @@ if [ "x$error_message" != "x" ] ; then
    cat $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
    echo
 ) | /usr/sbin/sendmail -t
-else
+#else
 
-(
-   echo "To: "$(echo $notifytowhom | sed "s#__AT__#@#" | sed "s#__dot__#\.#g")
-   echo "Subject: OK SAM3 Tests"
-   echo "Content-Type: text/html"
-   echo 
+#(
+#   echo "To: "$(echo $notifytowhom | sed "s#__AT__#@#" | sed "s#__dot__#\.#g")
+#   echo "Subject: OK SAM3 Tests"
+#   echo "Content-Type: text/html"
+#   echo 
    
-   cat $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
-   echo
-) | /usr/sbin/sendmail -t
+#   cat $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
+#   echo
+#) | /usr/sbin/sendmail -t
 
 fi
 rm -f $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
