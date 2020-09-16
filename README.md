@@ -1,5 +1,8 @@
 # ftl_check_sam3_sitemon
+
 Minimally large effort Emulation of CMS SAM Dashboard in plain cgi/HTML or for failed test alert
+
+![alt text](https://github.com/bockjoo/ftl_check_sam3_sitemon/blob/master/SAMDashboardClickables.pdf?raw=true)
 
 [1] How to configure the script?
 
