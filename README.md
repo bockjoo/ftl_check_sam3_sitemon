@@ -2,7 +2,7 @@
 
 Minimally large effort Emulation of CMS SAM Dashboard in plain cgi/HTML or for failed test alert
 
-The following dashboard can be viewed via a web server or an email agent, e.g., Thunderbird (See section [4]).
+The following dashboard can be viewed via a web server (See section [3]) or an email agent, e.g., Thunderbird (See section [4]).
 
 ![SAM Dashboard Clickables](SAMDashboardClickables.png)
 
@@ -30,7 +30,7 @@ You need to obtain a token to do search https://monit-grafana.cern.ch/api/dataso
 
 from the CMS Monitoring team, Christian or somebody.
 
-[2] How to cronize?
+[2] How to be alerted for failed tests?
 
 The following is an example crontab entry
 
