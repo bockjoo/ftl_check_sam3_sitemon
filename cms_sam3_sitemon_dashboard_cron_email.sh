@@ -6,8 +6,8 @@
 # 
 
 inputs=/opt/cms/services/HammerCloudXrootdMonitoring
-notifytowhom=bockjoo__AT__gmail__dot__com
-tld=rc.ufl.edu
+notifytowhom=somebody__AT__somewhere__dot__com
+tld=a.b.c
 port=8443
 webroot=http://$(/bin/hostname -s).${tld}:${port}/cgi-bin
 #thesite=
