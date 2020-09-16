@@ -161,7 +161,8 @@ LEGEND="
 14:org.cms.SE-xrootd-contain
 15:org.cms.SRM-VOGet:(/cms/Role_production)
 16:org.cms.SE-xrootd-version
-17:org.cms.SE-xrootd-read"
+17:org.cms.SE-xrootd-read
+99:org.cms.WN-cvmfs:(/cms/Role_lcgadmin)"
 echo "<table>" >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
 metrics=$(printf "$LEGEND\n" | cut -d: -f2 | grep ^org | sed "s#^org#\\\\\\\|org#g")
 metrics=$(echo $metrics | sed "s#\\\\|org#org#" | sed "s# ##g" | sed "s#\\\org#org#")
@@ -279,6 +280,7 @@ for l in $LEGEND ; do
 
 done
 echo "</table>" >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
+echo "Test numbers &gt; 17 are non-critical CMS tests"
 echo "</html>" >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
 
 #echo error_message=$error_message
