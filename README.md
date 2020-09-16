@@ -2,7 +2,7 @@
 
 Minimally large effort Emulation of CMS SAM Dashboard in plain cgi/HTML or for failed test alert
 
-![SAM Dashboard Clickables](SAMDashboardClickables.pdf)
+![SAM Dashboard Clickables](SAMDashboardClickables.png)
 
 [1] How to configure the script?
 
