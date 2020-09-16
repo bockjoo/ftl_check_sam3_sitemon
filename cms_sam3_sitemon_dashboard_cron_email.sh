@@ -163,15 +163,6 @@ LEGEND="
 16:org.cms.SE-xrootd-version
 17:org.cms.SE-xrootd-read"
 echo "<table>" >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
-echo "<tr><td bgcolor='yellow'>Legend<td><td bgcolor='yellow' align='left'>Metric Name</td></tr>" >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
-for l in $LEGEND ; do
-   L=$(echo $l | cut -d: -f1)
-   t=$(echo $l | cut -d: -f2)
-   echo "<tr><td> $L </td><td align='left'> $t </td></tr>" >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
-
-done
-echo "</table>" >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
-echo "<table>" >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
 metrics=$(printf "$LEGEND\n" | cut -d: -f2 | grep ^org | sed "s#^org#\\\\\\\|org#g")
 metrics=$(echo $metrics | sed "s#\\\\|org#org#" | sed "s# ##g" | sed "s#\\\org#org#")
 metrics=$(printf "$LEGEND\n" | cut -d: -f2 | grep ^org | sed "s#^org#\\\|org#g")
@@ -277,6 +268,15 @@ for sf in $(printf "$output\n" | grep "\"service_flavour\"" | sort -u | cut -d\"
           done
           echo "</tr>" >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
        done
+done
+echo "</table>" >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
+echo "<table>" >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
+echo "<tr><td bgcolor='yellow'>Legend<td><td bgcolor='yellow' align='left'>Metric Name</td></tr>" >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
+for l in $LEGEND ; do
+   L=$(echo $l | cut -d: -f1)
+   t=$(echo $l | cut -d: -f2)
+   echo "<tr><td> $L </td><td align='left'> $t </td></tr>" >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
+
 done
 echo "</table>" >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
 echo "</html>" >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
