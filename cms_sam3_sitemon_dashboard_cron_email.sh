@@ -179,7 +179,7 @@ for sf in $(printf "$output\n" | grep "\"service_flavour\"" | sort -u | cut -d\"
           [ $nt -lt 10 ] && { nt=0 ; break ; } ;
        done       
 done
-[ $nt -eq 10 ] || { echo "<pre>" Warning one or more CE has number of tests less than 10 "</pre>" : nt=$nt  >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html ; } ;
+[ $nt -lt 10 ] && { echo "<pre>" Warning one or more CE has number of tests less than 10 "</pre>" : nt=$nt  >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html ; } ;
 echo "<tr><td bgcolor='cyan'>Sitename<td><td bgcolor='cyan'>Flavor</td><td bgcolor='cyan'> Host </td>" >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
 i=0
 old_sf=
