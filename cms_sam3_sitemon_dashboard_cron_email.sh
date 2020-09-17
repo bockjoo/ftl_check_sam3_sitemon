@@ -288,10 +288,10 @@ for l in $LEGEND ; do
 
 done
 echo "</table>" >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
-echo "Test numbers &gt; 17 are non-critical CMS tests"
-echo "<br/>"
-echo "<FONT size=3 color='green'> Extra Metric Names </FONT></br>"
-echo "<FONT color='red'> $extra_metric_names </FONT>"
+echo "Test numbers &gt; 17 are non-critical CMS tests" >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
+echo "<br/>" >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
+echo "<FONT size=3 color='green'> Extra Metric Names </FONT></br>" >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
+echo "<FONT color='red'> $extra_metric_names </FONT>" >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
 echo "</html>" >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html
 
 #echo error_message=$error_message
