@@ -7,12 +7,13 @@
 
 inputs=/opt/cms/services/HammerCloudXrootdMonitoring # change this. This should be where this script and all *.json.in are.
 notifytowhom=bockjoo__AT__gmail__dot__com # change this to your email, mind __AT__ and __dot__ that are properly sed'ed later.
-tld=rc.ufl.edu
-port=8443
+THESITE=T2_US_Florida # change this to your site name
+tld=rc.ufl.edu # change this if you have a web server for this.
+port=8443 # change this if you have a web server for this.
 webroot=http://$(/bin/hostname -s).${tld}:${port}/cgi-bin
 #thesite=
-used_percent_warning=50
-used_percent=$(df -h /opt | grep -v Filesystem | awk '{print $(NF-1)}' | sed 's#%##g')
+used_percent_warning=50 # change this if needed
+used_percent=$(df -h /$(echo $inputs | cut -d/ -f2) | grep -v Filesystem | awk '{print $(NF-1)}' | sed 's#%##g')
 if [ $used_percent -gt $used_percent_warning ] ; then
    (
      echo "To: "$(echo $notifytowhom | sed "s#__AT__#@#" | sed "s#__dot__#\.#g")
@@ -213,7 +214,7 @@ for sf in $(printf "$output\n" | grep "\"service_flavour\"" | sort -u | cut -d\"
 done
 [ $nt -lt 10 ] && { echo "<pre>" Warning one or more CE has number of tests less than 10 "</pre>" : nt=$nt  >> $inputs/$(echo $basename_0 | sed "s#.sh##")_${now_is}.html ; } ;
 
-if [ "x$thesite" == "xT2_US_Florida" ] ; then
+if [ "x$thesite" == "x$THESITE" ] ; then
    if [ $nt -lt 10 ] ; then
       error_message="$error_message\nERROR one or more CE has number of tests less than 10 nt=$nt \n"
    #else 
@@ -331,7 +332,7 @@ for sf in $(printf "$output\n" | grep "\"service_flavour\"" | sort -u | cut -d\"
              if [ "x$status" != "xOK" ] ; then
                 #error_message="$error_message\n[$sf][$h][$t] = $status ${detail_link_prefix}${id}\n"
                 #error_message="$error_message\n[$sf][$h][$t] = $status ${webroot}/$(basename $0)?test_id=$id&site=$thesite\n${webroot}/$(basename $0)\n"
-                if [ "x$thesite" == "xT2_US_Florida" ] ; then
+                if [ "x$thesite" == "x$THESITE" ] ; then
                    error_message="$error_message\n[$sf][$h][$t] = $status \n${detail_link}\n${webroot}/$(basename $0)?test_id=$id&site=$thesite\n\n_id=$id metric_name=${metric_name} thetimestamp=$thetimestamp\n${detail_link}\n${webroot}/$(basename $0)?test_id=$id&site=$thesite\n${webroot}/$(basename $0)\n\nContent of input json\n$([ -f $inputs/${sort_search_id_json}_${now_is} ] && cat $inputs/${sort_search_id_json}_${now_is})"
                 fi
                 error_message_html="$error_message_html<br/>[$thesite][$sf][$h][$t] = $status <br/><a '${detail_link}'>${detail_link}</a><br/>"                
@@ -365,7 +366,7 @@ if [ "x$error_message" != "x" ] ; then
    #printf "$error_message\n"
    #printf "$(/bin/hostname -s) $(basename $0) SAM3 Test Alert\n$error_message\n" | mail -s "ERROR SAM3 Test Alert" $(echo $notifytowhom | sed "s#__AT__#@#" | sed "s#__dot__#\.#g")
    State=ERROR
-   nline_error_message=$(printf "$error_message\n" | grep "T2_US_Florida\|All CEs have at least number of tests" | wc -l)
+   nline_error_message=$(printf "$error_message\n" | grep "$THESITE\|All CEs have at least number of tests" | wc -l)
    [ $nline_error_message -lt 3 ] && State=INFO
 
 (
